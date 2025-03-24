@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SecondStepTech - Giving Technology a Second Life</title>
+  <title>Second Step Tech - Giving Technology a Second Life</title>
   <style>
     /* Global Styles */
     * {
@@ -58,33 +58,39 @@
       user-select: none; /* Prevents text selection on double-tap */
     }
 
+    /* Remove default list styling and margin */
     .nav-links {
       display: flex;
       list-style: none;
       transition: transform 0.3s, opacity 0.3s; /* Smooth transitions for mobile menu */
     }
 
+    /* Remove margin on li to avoid misalignment with new button style */
     .nav-links li {
-      margin-left: 30px;
+      margin: 0;
     }
 
+    /* Make each nav link a rounded, purplish button */
     .nav-links a {
+      display: inline-block;
+      background: linear-gradient(45deg, #833ab4, #fd1d1d);
+      border-radius: 30px;
       color: #fff;
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
+      font-weight: 600;
+      padding: 12px 30px;
+      margin: 5px;
+      transition: all 0.3s;
     }
 
     .nav-links a:hover {
-      background: linear-gradient(45deg, #833ab4, #fd1d1d);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      background: linear-gradient(45deg, #a64dff, #ff4d4d);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(128, 0, 128, 0.2);
     }
 
     /* Mobile menu (when <= 768px) */
     @media (max-width: 768px) {
-
       .mobile-toggle {
         display: block; /* Show the hamburger icon on mobile */
       }
@@ -108,11 +114,6 @@
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
-      }
-
-      /* Spacing for each mobile nav item */
-      .nav-links li {
-        margin: 15px 0;
       }
     }
 
@@ -168,7 +169,7 @@
       margin-bottom: 40px;
     }
 
-    /* Buttons */
+    /* Buttons (site-wide) */
     .btn {
       display: inline-block;
       padding: 12px 30px;
@@ -202,6 +203,13 @@
       grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
       gap: 30px;
       margin-top: 40px;
+    }
+    
+    /* Force single column on smaller screens to avoid overflow */
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .team-member {
@@ -287,7 +295,7 @@
   <header>
     <div class="container">
       <nav>
-        <div class="logo">SecondStepTech</div>
+        <div class="logo">Second Step Tech</div>
         
         <!-- Hamburger icon (only visible on mobile) -->
         <div class="mobile-toggle" onclick="toggleNav()">&#9776;</div>
@@ -307,7 +315,7 @@
     <section id="home" class="tab-content active">
       <div class="hero">
         <h1>Giving Technology a Second Life</h1>
-        <p>SecondStepTech refurbishes donated technology and puts it in the hands of those who need it most. Join us in bridging the digital divide one device at a time.</p>
+        <p>Second Step Tech refurbishes donated technology and puts it in the hands of those who need it most. Join us in bridging the digital divide one device at a time.</p>
         <div>
           <a href="#" onclick="showTab('about')" class="btn">Learn More</a>
           <a href="#" onclick="showTab('about'); document.getElementById('donate-section').scrollIntoView();" class="btn">Donate Now</a>
@@ -316,7 +324,7 @@
       
       <div>
         <h2>Our Mission</h2>
-        <p>At SecondStepTech, we believe in the power of technology to transform lives. Our mission is to collect, refurbish, and redistribute technology to underserved communities, schools, and individuals who lack access to digital resources.</p>
+        <p>At Second Step Tech, we believe in the power of technology to transform lives. Our mission is to collect, refurbish, and redistribute technology to underserved communities, schools, and individuals who lack access to digital resources.</p>
         
         <h2>Our Impact</h2>
         <p>Since our founding, we've refurbished hundreds of devices and helped countless individuals gain access to technology they otherwise couldn't afford. Each device we save from a landfill is another opportunity for someone to learn, connect, and grow.</p>
@@ -325,8 +333,8 @@
     
     <!-- About Tab -->
     <section id="about" class="tab-content">
-      <h1>About SecondStepTech</h1>
-      <p>SecondStepTech was founded with a simple idea: give used technology a second step in its lifecycle while helping bridge the digital divide. We collect donated devices, refurbish them, and distribute them to those in need.</p>
+      <h1>About Second Step Tech</h1>
+      <p>Second Step Tech was founded with a simple idea: give used technology a second step in its lifecycle while helping bridge the digital divide. We collect donated devices, refurbish them, and distribute them to those in need.</p>
       
       <h2>What We Do</h2>
       <ul class="what-we-do-list">
@@ -354,7 +362,7 @@
         <div class="donation-options">
           <div class="donation-card">
             <h3>Donate Devices</h3>
-            <p>We accept laptops, desktops, smartphones, and tablets. If you have a large donation or need assistance with drop-off, please reach out to us in advance so we can coordinate pickup. Together, we’ll make sure your devices find a second life!</p>
+            <p>We accept laptops, desktops, smartphones, and tablets. If you have a large donation or need assistance with drop-off, please reach out so we can coordinate pickup. Together, we’ll give your devices a second life!</p>
             <a href="#" class="btn">Find Drop-off Locations</a>
           </div>
           
@@ -391,7 +399,7 @@
           <div class="team-info">
             <h3>Vehbi Akin</h3>
             <p>Director of Finance and Operations</p>
-            <p>Hey everyone! I’m Vehbi Akin, a junior at Plano East. I’ve always been passionate about using technology to make a difference, and SecondStepTech is the perfect platform to bring that vision to life. I’m excited to collaborate, innovate, and help bridge the gap in tech accessibility for students everywhere!</p>
+            <p>Hey everyone! I’m Vehbi Akin, a junior at Plano East. I’ve always been passionate about using technology to make a difference, and Second Step Tech is the perfect platform to bring that vision to life. I’m excited to collaborate, innovate, and help bridge the gap in tech accessibility for students everywhere!</p>
           </div>
         </div>
         
@@ -402,7 +410,7 @@
           <div class="team-info">
             <h3>Ayan Mishra</h3>
             <p>Director Of Logistics and Technology</p>
-            <p>Hi! My name is Ayan Mishra, and I’m thrilled to be a part of SecondStepTech. As a junior at Plano East, I’ve seen firsthand how technology can transform education, and I’m committed to making those opportunities available to everyone. Let’s work together to create meaningful change!</p>
+            <p>Hi! My name is Ayan Mishra, and I’m thrilled to be a part of Second Step Tech. As a junior at Plano East, I’ve seen firsthand how technology can transform education, and I’m committed to making those opportunities available to everyone. Let’s work together to create meaningful change!</p>
           </div>
         </div>
       </div>
@@ -411,7 +419,7 @@
     <!-- Apply Tab -->
     <section id="apply" class="tab-content">
       <h1>Apply to Be an Officer</h1>
-      <p>Officers at SecondStepTech commit a few hours each week to coordinate device donations, organize refurbishment sessions, plan outreach events, and handle fundraising. As an officer, you’ll gain leadership experience, learn valuable technical skills, and help expand our impact in bridging the digital divide.</p>
+      <p>Officers at Second Step Tech commit a few hours each week to coordinate device donations, organize refurbishment sessions, plan outreach events, and handle fundraising. As an officer, you’ll gain leadership experience, learn valuable technical skills, and help expand our impact in bridging the digital divide.</p>
       
       <div class="iframe-container">
         <iframe 
@@ -430,7 +438,7 @@
   
   <footer>
     <div class="container">
-      <p>&copy; 2025 SecondStepTech. All rights reserved.</p>
+      <p>&copy; 2025 Second Step Tech. All rights reserved.</p>
       <p>A nonprofit organization dedicated to giving technology a second life and bridging the digital divide.</p>
     </div>
   </footer>
