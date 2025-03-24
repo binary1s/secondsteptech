@@ -47,11 +47,21 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
+      position: relative; /* So the absolute-positioned nav-links can anchor to nav */
+    }
+
+    /* Hamburger icon for mobile */
+    .mobile-toggle {
+      display: none; /* Hidden on desktop */
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none; /* Prevents text selection on double-tap */
     }
 
     .nav-links {
       display: flex;
       list-style: none;
+      transition: transform 0.3s, opacity 0.3s; /* Smooth transitions for mobile menu */
     }
 
     .nav-links li {
@@ -70,6 +80,40 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+
+    /* Mobile menu (when <= 768px) */
+    @media (max-width: 768px) {
+
+      .mobile-toggle {
+        display: block; /* Show the hamburger icon on mobile */
+      }
+
+      /* Default (hidden) state for nav-links on mobile: off-canvas, invisible */
+      .nav-links {
+        position: absolute;
+        top: 70px; 
+        right: 0;
+        background-color: #111;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        transform: translateY(-150%);
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      /* Visible state when .active is added */
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Spacing for each mobile nav item */
+      .nav-links li {
+        margin: 15px 0;
+      }
     }
 
     /* Content Tabs */
@@ -237,41 +281,6 @@
       margin-top: 20px;
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .nav-links {
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background-color: #111;
-        width: 100%;
-        text-align: center;
-        transform: translateY(-100%);
-        transition: transform 0.3s;
-        opacity: 0;
-        visibility: hidden;
-      }
-      
-      .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-      }
-      
-      .nav-links li {
-        margin: 15px 0;
-      }
-      
-      .mobile-toggle {
-        display: block;
-        cursor: pointer;
-      }
-      
-      .donation-options {
-        flex-direction: column;
-      }
-    }
   </style>
 </head>
 <body>
@@ -279,11 +288,15 @@
     <div class="container">
       <nav>
         <div class="logo">SecondStepTech</div>
-        <ul class="nav-links">
-          <li><a href="#" onclick="showTab('home')">Home</a></li>
-          <li><a href="#" onclick="showTab('about')">About Us</a></li>
-          <li><a href="#" onclick="showTab('team')">Our Team</a></li>
-          <li><a href="#" onclick="showTab('apply')">Apply</a></li>
+        
+        <!-- Hamburger icon (only visible on mobile) -->
+        <div class="mobile-toggle" onclick="toggleNav()">&#9776;</div>
+        
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#" onclick="showTab('home'); toggleNav();">Home</a></li>
+          <li><a href="#" onclick="showTab('about'); toggleNav();">About Us</a></li>
+          <li><a href="#" onclick="showTab('team'); toggleNav();">Our Team</a></li>
+          <li><a href="#" onclick="showTab('apply'); toggleNav();">Apply</a></li>
         </ul>
       </nav>
     </div>
@@ -423,6 +436,12 @@
   </footer>
 
   <script>
+    // Toggle the nav menu on mobile
+    function toggleNav() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+
     // Tab Functionality
     function showTab(tabId) {
       // Hide all tabs
