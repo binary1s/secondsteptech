@@ -1,613 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Second Step Tech</title>
-  <style>
-    :root {
-      --primary: #8a3ab9; /* Instagram purple */
-      --secondary: #bc2a8d; /* Instagram pink */
-      --accent: #e95950; /* Instagram reddish */
-      --dark: #121212; /* Dark background */
-      --darker: #000000; /* Black background */
-      --light-text: #f5f5f5;
-      --gray: #333333;
-      --light-gray: #4d4d4d;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      background-color: var(--dark);
-      color: var(--light-text);
-      line-height: 1.6;
-    }
-    
-    header {
-      background-color: var(--darker);
-      color: white;
-      padding: 1rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-    
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    
-    .logo-img {
-      margin-right: 0.5rem;
-    }
-    
-    .nav-links {
-      display: flex;
-      list-style: none;
-    }
-    
-    .nav-links li {
-      margin-left: 1.5rem;
-    }
-    
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    
-    .nav-links a:hover {
-      color: var(--secondary);
-    }
-    
-    .active {
-      border-bottom: 2px solid var(--primary);
-    }
-    
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    
-    section {
-      margin-bottom: 3rem;
-    }
-    
-    h1 {
-      color: var(--light-text);
-      margin-bottom: 1rem;
-    }
-    
-    h2 {
-      color: var(--light-text);
-      margin-bottom: 1rem;
-    }
-    
-    p {
-      margin-bottom: 1rem;
-    }
-    
-    .btn {
-      display: inline-block;
-      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-    
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
-    }
-    
-    .btn-secondary {
-      background: linear-gradient(45deg, #555555, #777777);
-    }
-    
-    .btn-secondary:hover {
-      background: linear-gradient(45deg, #666666, #888888);
-    }
-    
-    .hero {
-      background-color: var(--gray);
-      padding: 3rem;
-      border-radius: 8px;
-      text-align: center;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto 2rem;
-    }
-    
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .feature-card {
-      background-color: var(--gray);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-    }
-    
-    .feature-icon {
-      font-size: 2.5rem;
-      background: linear-gradient(45deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-    }
-    
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    
-    .team-member {
-      background-color: var(--gray);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    .team-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    
-    .team-info {
-      padding: 1.5rem;
-    }
-    
-    .team-name {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .team-role {
-      color: var(--secondary);
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-    
-    .donate-options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    
-    .donate-card {
-      background-color: var(--gray);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      text-align: center;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-    
-    input, textarea, select {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid var(--light-gray);
-      border-radius: 4px;
-      font-size: 1rem;
-      background-color: var(--light-gray);
-      color: var(--light-text);
-    }
-    
-    textarea {
-      min-height: 150px;
-    }
-    
-    footer {
-      background-color: var(--darker);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-      margin: 1rem 0;
-    }
-    
-    .social-links li {
-      margin: 0 1rem;
-    }
-    
-    .social-links a {
-      color: white;
-      font-size: 1.5rem;
-    }
-    
-    .hidden {
-      display: none;
-    }
-    
-    #home-content,
-    #owners-content,
-    #about-content,
-    #apply-content {
-      display: none;
-    }
-    
-    .active-content {
-      display: block !important;
-    }
-    
-    .placeholder-text {
-      background-color: var(--light-gray);
-      padding: 1rem;
-      border-radius: 4px;
-      color: #aaa;
-      font-style: italic;
-    }
-    
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-      }
-      
-      .nav-links {
-        margin-top: 1rem;
-      }
-      
-      .nav-links li {
-        margin: 0 0.75rem;
-      }
-      
-      .hero {
-        padding: 2rem 1rem;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecondStepTech - Giving Technology a Second Life</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navigation */
+        header {
+            background-color: #111;
+            box-shadow: 0 2px 10px rgba(128, 0, 128, 0.3);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #833ab4, #fd1d1d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Content Tabs */
+        .tab-content {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            background: linear-gradient(45deg, #833ab4, #fd1d1d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin-top: 30px;
+        }
+... (385 lines left)
+Collapse
+secondsteptech-website.html
+17 KB
+﻿
+ryan has nitro
+kkaytranada
+ 
+ 
+ 
+king of the fall
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecondStepTech - Giving Technology a Second Life</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navigation */
+        header {
+            background-color: #111;
+            box-shadow: 0 2px 10px rgba(128, 0, 128, 0.3);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #833ab4, #fd1d1d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Content Tabs */
+        .tab-content {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            background: linear-gradient(45deg, #833ab4, #fd1d1d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin-top: 30px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #833ab4, #fd1d1d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(45deg, #a64dff, #ff4d4d);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(128, 0, 128, 0.2);
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            background-color: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .team-img {
+            height: 200px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Form Styles */
+        form {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            max-width: 800px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #222;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        /* Donation Section */
+        .donation-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .donation-card {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 80px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            margin: 0 15px;
+            color: #fff;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #833ab4;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background-color: #111;
+                width: 100%;
+                text-align: center;
+                transform: translateY(-100%);
+                transition: transform 0.3s;
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                cursor: pointer;
+            }
+            
+            .donation-options {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">
-        <span class="logo-img">♻️</span>
-        <span>SecondStepTech</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#" id="home-link" class="nav-link active" onclick="showContent('home')">Home</a></li>
-        <li><a href="#" id="owners-link" class="nav-link" onclick="showContent('owners')">Our Team</a></li>
-        <li><a href="#" id="about-link" class="nav-link" onclick="showContent('about')">About Us</a></li>
-        <li><a href="#" id="apply-link" class="nav-link" onclick="showContent('apply')">Apply</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Home Content -->
-    <div id="home-content" class="active-content">
-      <section class="hero">
-        <h1>Giving Technology a Second Life</h1>
-        <p>Second Step Tech collects, refurbishes, and redistributes used technology to those who need it most. Join us in reducing e-waste and bridging the digital divide.</p>
-        <a href="#" class="btn" onclick="showContent('about')">Learn How to Donate</a>
-      </section>
-
-      <section>
-        <h2>Our Mission</h2>
-        <p>At Second Step Tech, we believe technology should empower everyone. Many functional devices end up in landfills while many people lack access to basic tech tools. We're changing that by giving technology a second step in its lifecycle.</p>
-      </section>
-
-      <section>
-        <h2>Our Impact</h2>
-        <div class="features">
-          <div class="feature-card">
-            <div class="feature-icon">🖥️</div>
-            <h3>Technology Saved</h3>
-            <p>We've kept over 10,000 devices out of landfills by refurbishing and redistributing them to communities in need.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🌱</div>
-            <h3>Environmental Impact</h3>
-            <p>Our efforts have prevented thousands of pounds of e-waste and helped reduce the demand for new resource extraction.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">👨‍👩‍👧‍👦</div>
-            <h3>Communities Served</h3>
-            <p>We've helped bridge the digital divide by providing technology access to schools, libraries, and families across the region.</p>
-          </div>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">SecondStepTech</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showTab('home')">Home</a></li>
+                    <li><a href="#" onclick="showTab('about')">About Us</a></li>
+                    <li><a href="#" onclick="showTab('team')">Our Team</a></li>
+                    <li><a href="#" onclick="showTab('apply')">Apply</a></li>
+                </ul>
+            </nav>
         </div>
-      </section>
-    </div>
-
-    <!-- Owners Content -->
-    <div id="owners-content">
-      <section>
-        <h1>Our Leadership Team</h1>
-        <div class="placeholder-text">
-          [This is a placeholder section for your leadership team. You can add information about your organization's founders, directors, and key team members here. Include photos, bios, roles, and any other relevant details about the people who make SecondStepTech possible.]
-        </div>
-      </section>
-
-      <section>
-        <h2>Meet Our Team</h2>
-        <div class="team-grid">
-          <div class="team-member">
-            <img src="/api/placeholder/400/300" alt="Team Member" class="team-img">
-            <div class="team-info">
-              <h3 class="team-name">[Name]</h3>
-              <p class="team-role">[Role/Position]</p>
-              <p>[Brief bio or description]</p>
+    </header>
+    
+    <main class="container">
+        <!-- Home Tab -->
+        <section id="home" class="tab-content active">
+            <div class="hero">
+                <h1>Giving Technology a Second Life</h1>
+                <p>SecondStepTech refurbishes donated technology and puts it in the hands of those who need it most. Join us in bridging the digital divide one device at a time.</p>
+                <div>
+                    <a href="#" onclick="showTab('about')" class="btn">Learn More</a>
+                    <a href="#" onclick="showTab('about'); document.getElementById('donate-section').scrollIntoView();" class="btn">Donate Now</a>
+                </div>
             </div>
-          </div>
-          
-          <div class="team-member">
-            <img src="/api/placeholder/400/300" alt="Team Member" class="team-img">
-            <div class="team-info">
-              <h3 class="team-name">[Name]</h3>
-              <p class="team-role">[Role/Position]</p>
-              <p>[Brief bio or description]</p>
+            
+            <div>
+                <h2>Our Mission</h2>
+                <p>At SecondStepTech, we believe in the power of technology to transform lives. Our mission is to collect, refurbish, and redistribute technology to underserved communities, schools, and individuals who lack access to digital resources.</p>
+                
+                <h2>Our Impact</h2>
+                <p>Since our founding, we've refurbished over hundreds of devices and helped countless individuals gain access to technology they otherwise couldn't afford. Each device we save from a landfill is another opportunity for someone to learn, connect, and grow.</p>
             </div>
-          </div>
-          
-          <div class="team-member">
-            <img src="/api/placeholder/400/300" alt="Team Member" class="team-img">
-            <div class="team-info">
-              <h3 class="team-name">[Name]</h3>
-              <p class="team-role">[Role/Position]</p>
-              <p>[Brief bio or description]</p>
-            </div>
-          </div>
-          
-          <div class="team-member">
-            <img src="/api/placeholder/400/300" alt="Team Member" class="team-img">
-            <div class="team-info">
-              <h3 class="team-name">[Name]</h3>
-              <p class="team-role">[Role/Position]</p>
-              <p>[Brief bio or description]</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Board of Directors</h2>
-        <div class="placeholder-text">
-          [This is a placeholder for your board of directors information. List your board members with their names, titles, and short bios. You might want to include their professional backgrounds and why they're passionate about SecondStepTech's mission.]
-        </div>
-      </section>
-    </div>
-
-    <!-- About Us Content -->
-    <div id="about-content">
-      <section>
-        <h1>About SecondStepTech</h1>
-        <div class="placeholder-text">
-          [This is a placeholder for your organization's story. Include information about when and why SecondStepTech was founded, your growth journey, major milestones, and your vision for the future. This helps visitors connect with your mission on a personal level.]
-        </div>
-      </section>
-
-      <section>
-        <h2>What We Do</h2>
-        <div class="placeholder-text">
-          [This is a placeholder for describing your programs and services. Explain your process for collecting, refurbishing, and distributing technology. Detail the types of devices you accept, how you ensure quality, and where the refurbished technology goes.]
-        </div>
-      </section>
-
-      <section>
-        <h2>Our Values</h2>
-        <div class="placeholder-text">
-          [This is a placeholder for your organization's core values. List and describe the principles that guide your work, such as sustainability, accessibility, education, community service, etc.]
-        </div>
-      </section>
-
-      <section>
-        <h2>How to Donate</h2>
-        <p>Your donations make our work possible. There are several ways you can support SecondStepTech:</p>
+        </section>
         
-        <div class="donate-options">
-          <div class="donate-card">
-            <h3>Donate Technology</h3>
-            <div class="placeholder-text">
-              [This is a placeholder for donation information. Include details about what types of technology you accept, drop-off locations, and any pickup services you offer. You might also want to include information about data wiping procedures to reassure donors.]
+        <!-- About Tab -->
+        <section id="about" class="tab-content">
+            <h1>About SecondStepTech</h1>
+            <p>SecondStepTech was founded with a simple idea: give used technology a second step in its lifecycle while helping bridge the digital divide. We collect donated devices, refurbish them, and distribute them to those in need.</p>
+            
+            <h2>What We Do</h2>
+            <p>[Placeholder: Add detailed information about your refurbishment process, the types of technology you accept, and how you distribute the refurbished devices.]</p>
+            
+            <h2>How It Works</h2>
+            <p>[Placeholder: Explain the journey of a device from donation to its new owner. Include information about data wiping procedures and quality assurance.]</p>
+            
+            <div id="donate-section">
+                <h2>Donate</h2>
+                <p>Your donations make our work possible. Whether you're donating a device or contributing financially, you're helping bridge the digital divide.</p>
+                
+                <div class="donation-options">
+                    <div class="donation-card">
+                        <h3>Donate Devices</h3>
+                        <p>[Placeholder: Information about what devices you accept, drop-off locations, and pickup options if available.]</p>
+                        <a href="#" class="btn">Find Drop-off Locations</a>
+                    </div>
+                    
+                    <div class="donation-card">
+                        <h3>Donate Funds</h3>
+                        <p>Financial contributions help us purchase parts, tools, and cover operational costs to keep our mission running smoothly.</p>
+                        <a href="#" class="btn">Donate via PayPal</a>
+                    </div>
+                </div>
             </div>
-            <a href="#" class="btn" onclick="alert('You can add a link to your donation locations page here')">Find Donation Locations</a>
-          </div>
-          
-          <div class="donate-card">
-            <h3>Financial Support</h3>
-            <div class="placeholder-text">
-              [This is a placeholder for financial donation information. Explain how monetary donations are used and the impact they have. Include information about tax deductions if applicable.]
+        </section>
+        
+        <!-- Team Tab -->
+        <section id="team" class="tab-content">
+            <h1>Our Team</h1>
+            <p>[Placeholder: Introduction about your team and their collective passion for the mission of SecondStepTech.]</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/250/250" alt="placeholder">
+                    </div>
+                    <div class="team-info">
+                        <h3>[Name]</h3>
+                        <p>[Position]</p>
+                        <p>[Placeholder: Brief bio highlighting experience and passion for the mission.]</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/250/250" alt="placeholder">
+                    </div>
+                    <div class="team-info">
+                        <h3>[Name]</h3>
+                        <p>[Position]</p>
+                        <p>[Placeholder: Brief bio highlighting experience and passion for the mission.]</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/250/250" alt="placeholder">
+                    </div>
+                    <div class="team-info">
+                        <h3>[Name]</h3>
+                        <p>[Position]</p>
+                        <p>[Placeholder: Brief bio highlighting experience and passion for the mission.]</p>
+                    </div>
+                </div>
             </div>
-            <a href="#" class="btn" onclick="alert('You can add your PayPal donation link here')">Donate via PayPal</a>
-          </div>
-          
-          <div class="donate-card">
-            <h3>Volunteer Your Time</h3>
-            <div class="placeholder-text">
-              [This is a placeholder for volunteer information. Describe the different volunteer roles available, required skills, time commitments, and the training provided.]
-            </div>
-            <a href="#" class="btn" onclick="showContent('apply')">Become a Volunteer</a>
-          </div>
+        </section>
+        
+        <!-- Apply Tab -->
+        <section id="apply" class="tab-content">
+            <h1>Apply to Be an Officer</h1>
+            <p>[Placeholder: Information about what being an officer at SecondStepTech entails, the commitment required, and the impact officers make.]</p>
+            
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="position">Interested Position</label>
+                    <select id="position" name="position" required>
+                        <option value="">Select a position</option>
+                        <option value="technical">Technical Officer (Refurbishment)</option>
+                        <option value="outreach">Outreach Officer</option>
+                        <option value="logistics">Logistics Officer</option>
+                        <option value="fundraising">Fundraising Officer</option>
+                        <option value="other">Other (Specify Below)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Relevant Experience</label>
+                    <textarea id="experience" name="experience" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="why">Why do you want to join SecondStepTech?</label>
+                    <textarea id="why" name="why" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Submit Application</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SecondStepTech. All rights reserved.</p>
+            <p>A nonprofit organization dedicated to giving technology a second life and bridging the digital divide.</p>
         </div>
-      </section>
-    </div>
+    </footer>
 
-    <!-- Apply Content -->
-    <div id="apply-content">
-      <section>
-        <h1>Apply to Join Our Team</h1>
-        <div class="placeholder-text">
-          [This is a placeholder for your application introduction. Describe the benefits of joining your team, what volunteers can expect, and any requirements or qualifications you're looking for. You might also want to include testimonials from current volunteers.]
-        </div>
-      </section>
-
-      <section>
-        <form id="officer-application">
-          <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone">
-          </div>
-          
-          <div class="form-group">
-            <label for="position">Position of Interest *</label>
-            <select id="position" name="position" required>
-              <option value="">-- Select Position --</option>
-              <option value="technical">Technical Volunteer (Refurbishment)</option>
-              <option value="sorting">Sorting and Inventory</option>
-              <option value="outreach">Community Outreach</option>
-              <option value="admin">Administrative Support</option>
-              <option value="delivery">Pickup/Delivery</option>
-              <option value="other">Other (Please specify)</option>
-            </select>
-          </div>
-          
-          <div class="form-group" id="other-position-group" style="display: none;">
-            <label for="other-position">Please Specify Position</label>
-            <input type="text" id="other-position" name="other-position">
-          </div>
-          
-          <div class="form-group">
-            <label for="availability">Availability (hours per week) *</label>
-            <select id="availability" name="availability" required>
-              <option value="">-- Select Hours --</option>
-              <option value="1-5">1-5 hours</option>
-              <option value="5-10">5-10 hours</option>
-              <option value="10-20">10-20 hours</option>
-              <option value="20+">20+ hours</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="experience">Relevant Experience</label>
-            <textarea id="experience" name="experience" placeholder="Please describe any relevant experience you have with technology, nonprofits, or other skills that might benefit our organization."></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label for="why-join">Why do you want to join SecondStepTech? *</label>
-            <textarea id="why-join" name="why-join" required placeholder="Tell us why you're interested in our mission and how you hope to contribute."></textarea>
-          </div>
-          
-          <div class="form-group">
-            <button type="submit" class="btn">Submit Application</button>
-          </div>
-        </form>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <div class="logo">
-      <span class="logo-img">♻️</span>
-      <span>SecondStepTech</span>
-    </div>
-    <p>Giving Technology a Second Life</p>
-    <ul class="social-links">
-      <li><a href="#">📱</a></li>
-      <li><a href="#">💻</a></li>
-      <li><a href="#">📧</a></li>
-    </ul>
-    <p>&copy; 2025 SecondStepTech. All rights reserved.</p>
-  </footer>
-
-  <script>
-    function showContent(contentType) {
-      // Hide all content sections
-      document.getElementById('home-content').classList.remove('active-content');
-      document.getElementById('owners-content').classList.remove('active-content');
-      document.getElementById('about-content').classList.remove('active-content');
-      document.getElementById('apply-content').classList.remove('active-content');
-      
-      // Remove active class from all nav links
-      document.getElementById('home-link').classList.remove('active');
-      document.getElementById('owners-link').classList.remove('active');
-      document.getElementById('about-link').classList.remove('active');
-      document.getElementById('apply-link').classList.remove('active');
-      
-      // Show selected content and make nav link active
-      document.getElementById(contentType + '-content').classList.add('active-content');
-      document.getElementById(contentType + '-link').classList.add('active');
-    }
-    
-    // Show/hide "other position" field based on selection
-    document.getElementById('position').addEventListener('change', function() {
-      if (this.value === 'other') {
-        document.getElementById('other-position-group').style.display = 'block';
-      } else {
-        document.getElementById('other-position-group').style.display = 'none';
-      }
-    });
-    
-    // Form submission handler
-    document.getElementById('officer-application').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your application! We will contact you soon.');
-      this.reset();
-    });
-    
-    // Make all buttons functional with alerts if they don't have specific functionality
-    document.querySelectorAll('.btn').forEach(button => {
-      if (!button.getAttribute('onclick')) {
-        button.addEventListener('click', function(e) {
-          e.preventDefault();
-          alert('This button will be linked to the appropriate action when the site is complete.');
+    <script>
+        // Tab Functionality
+        function showTab(tabId) {
+            // Hide all tabs
+            const tabs = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            // Show the selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Handle form submission (can be expanded later)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('This form is currently not functional. Please check back later!');
         });
-      }
-    });
-  </script>
+    </script>
 </body>
 </html>
