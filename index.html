@@ -26,10 +26,59 @@
       padding: 20px;
     }
 
+    /* Animation classes */
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    .slide-in-left {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .slide-in-right {
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    .zoom-in {
+      animation: zoomIn 0.8s ease-out;
+    }
+
+    .bounce {
+      animation: bounce 1s ease infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     /* Navigation */
     header {
       background-color: #111;
       box-shadow: 0 2px 10px rgba(128, 0, 128, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo {
@@ -40,6 +89,11 @@
       background-clip: text;
       color: transparent;
       letter-spacing: 1px;
+      transition: transform 0.3s;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     nav {
@@ -81,12 +135,43 @@
       padding: 12px 30px;
       margin: 5px;
       transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
     .nav-links a:hover {
       background: linear-gradient(45deg, #a64dff, #ff4d4d);
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(128, 0, 128, 0.2);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .nav-links a:hover::after {
+      animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
     }
 
     /* Mobile menu (when <= 768px) */
@@ -156,6 +241,22 @@
       align-items: center;
       text-align: center;
       padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      z-index: -1;
     }
 
     .hero h1 {
@@ -183,6 +284,8 @@
       border: none;
       outline: none;
       margin: 10px;
+      position: relative;
+      overflow: hidden;
     }
     
     .btn:hover {
@@ -191,16 +294,127 @@
       box-shadow: 0 10px 20px rgba(128, 0, 128, 0.2);
     }
 
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .btn:hover::after {
+      animation: ripple 1s ease-out;
+    }
+
+    /* Stats Counter Section */
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 40px 0;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 20px;
+      background-color: #111;
+      border-radius: 10px;
+      margin: 10px;
+      flex: 1;
+      min-width: 200px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-10px);
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #833ab4, #fd1d1d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Image Gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      height: 200px;
+      background-color: #222;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
     /* Spacing for bullet points in "What We Do" and "How It Works" */
     .what-we-do-list li,
     .how-it-works-list li {
-      margin-bottom: 10px; /* Add spacing between list items */
+      margin-bottom: 15px; /* Add spacing between list items */
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .what-we-do-list li::before,
+    .how-it-works-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #833ab4;
     }
 
     /* Team Section */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 30px;
       margin-top: 40px;
     }
@@ -216,20 +430,33 @@
       background-color: #111;
       border-radius: 10px;
       overflow: hidden;
-      transition: transform 0.3s;
+      transition: all 0.3s;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .team-member:hover {
       transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(128, 0, 128, 0.3);
     }
 
     .team-img {
-      height: 200px;
+      height: 250px;
       background-color: #222;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+    }
+
+    .team-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .team-member:hover .team-img img {
+      transform: scale(1.1);
     }
 
     .team-info {
@@ -237,7 +464,68 @@
     }
 
     .team-info h3 {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
+      background: linear-gradient(45deg, #833ab4, #fd1d1d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .team-info .role {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #aaa;
+    }
+
+    /* Testimonial Section */
+    .testimonials {
+      margin: 50px 0;
+      position: relative;
+    }
+
+    .testimonial-container {
+      background-color: #111;
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .testimonial-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(128, 0, 128, 0.3);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+      padding: 0 20px;
+    }
+
+    .testimonial-text::before,
+    .testimonial-text::after {
+      content: '"';
+      font-size: 50px;
+      color: #833ab4;
+      position: absolute;
+      opacity: 0.5;
+    }
+
+    .testimonial-text::before {
+      top: -20px;
+      left: -10px;
+    }
+
+    .testimonial-text::after {
+      bottom: -40px;
+      right: -10px;
+    }
+
+    .testimonial-author {
+      text-align: right;
+      font-weight: 600;
     }
 
     /* Donation Section */
@@ -255,6 +543,127 @@
       flex: 1;
       min-width: 300px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .donation-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(128, 0, 128, 0.3);
+    }
+
+    .donation-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(45deg, #833ab4, #fd1d1d);
+    }
+
+    /* FAQ Section */
+    .faq-container {
+      margin: 40px 0;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #111;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .faq-question {
+      padding: 15px 20px;
+      background-color: #222;
+      cursor: pointer;
+      position: relative;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .faq-question:hover {
+      background-color: #333;
+    }
+
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0;
+      height: 0;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 15px 20px;
+      height: auto;
+    }
+
+    /* Process Steps */
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(45deg, #833ab4, #fd1d1d);
+      z-index: -1;
+    }
+
+    .process-step {
+      flex: 1;
+      min-width: 150px;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, #833ab4, #fd1d1d);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s;
+    }
+
+    .process-step:hover .step-number {
+      transform: scale(1.1);
+      box-shadow: 0 10px 20px rgba(128, 0, 128, 0.3);
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
     /* Footer */
@@ -275,11 +684,29 @@
       margin: 0 15px;
       color: #fff;
       font-size: 24px;
-      transition: color 0.3s;
+      transition: all 0.3s;
+      position: relative;
     }
 
     .social-links a:hover {
       color: #833ab4;
+      transform: translateY(-5px);
+    }
+
+    .social-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(45deg, #833ab4, #fd1d1d);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .social-links a:hover::before {
+      transform: scaleX(1);
     }
 
     /* Container for the Google Form iframe */
@@ -314,62 +741,241 @@
     <!-- Home Tab -->
     <section id="home" class="tab-content active">
       <div class="hero">
-        <h1>Giving Technology a Second Life</h1>
-        <p>Second Step Tech refurbishes donated technology and puts it in the hands of those who need it most. Join us in bridging the digital divide one device at a time.</p>
-        <div>
+        <h1 class="zoom-in">Giving Technology a Second Life</h1>
+        <p class="fade-in">Second Step Tech refurbishes donated technology and puts it in the hands of those who need it most. Join us in bridging the digital divide one device at a time.</p>
+        <div class="slide-in-left">
           <a href="#" onclick="showTab('about')" class="btn">Learn More</a>
           <a href="#" onclick="showTab('about'); document.getElementById('donate-section').scrollIntoView();" class="btn">Donate Now</a>
         </div>
       </div>
       
       <div>
-        <h2>Our Mission</h2>
-        <p>At Second Step Tech, we believe in the power of technology to transform lives. Our mission is to collect, refurbish, and redistribute technology to underserved communities, schools, and individuals who lack access to digital resources.</p>
+        <h2 class="slide-in-right">Our Mission</h2>
+        <p>At Second Step Tech, we believe in the power of technology to transform lives. Our mission is to collect, refurbish, and redistribute technology to underserved communities, schools, and individuals who lack access to digital resources. We strive to bridge the digital divide and empower people by providing equal access to technology.</p>
         
-        <h2>Our Impact</h2>
+        <p>In today's increasingly digital world, access to technology is no longer a luxury but a necessity. From education and job searching to healthcare and basic services, technology plays a crucial role in daily life. Yet millions of people remain disconnected due to economic barriers, creating a widening gap in opportunities and access.</p>
+        
+        <p>We're committed to addressing this inequality through sustainable, community-focused solutions. By giving technology a second life, we're not only helping people connect to essential resources but also reducing e-waste and promoting environmental sustainability.</p>
+        
+        <div class="image-gallery">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Student with laptop">
+            <div class="gallery-caption">Empowering students with technology</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1581092921461-39b10bc4bf93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech repair">
+            <div class="gallery-caption">Our refurbishment process</div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Community center">
+            <div class="gallery-caption">Community distribution events</div>
+          </div>
+        </div>
+        
+        <h2 class="slide-in-left">Our Impact</h2>
         <p>Since our founding, we've refurbished hundreds of devices and helped countless individuals gain access to technology they otherwise couldn't afford. Each device we save from a landfill is another opportunity for someone to learn, connect, and grow.</p>
+        
+        <p>Our work has enabled students to complete homework assignments, adults to apply for jobs, seniors to connect with healthcare services, and families to stay in touch with loved ones. By providing technology access, we're not just giving away devices—we're opening doors to education, employment, and essential services.</p>
+        
+        <div class="stats-container">
+          <div class="stat-box fade-in">
+            <div class="stat-number" id="devices-count">500+</div>
+            <p>Devices Refurbished</p>
+          </div>
+          <div class="stat-box fade-in">
+            <div class="stat-number" id="students-count">300+</div>
+            <p>Students Helped</p>
+          </div>
+          <div class="stat-box fade-in">
+            <div class="stat-number" id="partners-count">15+</div>
+            <p>Community Partners</p>
+          </div>
+          <div class="stat-box fade-in">
+            <div class="stat-number" id="volunteers-count">50+</div>
+            <p>Active Volunteers</p>
+          </div>
+        </div>
+        
+        <h2 class="slide-in-right">Success Stories</h2>
+        <div class="testimonials">
+          <div class="testimonial-container fade-in">
+            <div class="testimonial-text">
+              Thanks to Second Step Tech, our classroom now has enough computers for all students to work simultaneously. This has transformed our teaching approach and allowed us to incorporate more digital learning tools that were previously inaccessible.
+            </div>
+            <div class="testimonial-author">- Sarah Johnson, Elementary School Teacher</div>
+          </div>
+          <div class="testimonial-container fade-in">
+            <div class="testimonial-text">
+              After receiving a refurbished laptop from Second Step Tech, I was finally able to take online courses and earn my certification. This opened doors to better job opportunities, and I'm now working in my dream field.
+            </div>
+            <div class="testimonial-author">- Michael Torres, Program Recipient</div>
+          </div>
+        </div>
+        
+        <h2 class="slide-in-left">Get Involved</h2>
+        <p>Whether you're donating devices, volunteering your time and skills, or contributing financially, there are many ways to support our mission. Together, we can create meaningful change and ensure technology access for all.</p>
+        
+        <p>Join our growing community of tech enthusiasts, educators, students, and concerned citizens who believe in the power of connectivity and equal opportunity in the digital age. Your contribution, no matter how small, makes a difference in bridging the digital divide.</p>
       </div>
     </section>
     
     <!-- About Tab -->
     <section id="about" class="tab-content">
-      <h1>About Second Step Tech</h1>
+      <h1 class="zoom-in">About Second Step Tech</h1>
       <p>Second Step Tech was founded with a simple idea: give used technology a second step in its lifecycle while helping bridge the digital divide. We collect donated devices, refurbish them, and distribute them to those in need.</p>
       
-      <h2>What We Do</h2>
+      <div class="image-gallery">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1540066019607-e5f69323a8dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team working on laptops">
+          <div class="gallery-caption">Our team at work</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital divide concept">
+          <div class="gallery-caption">Bridging the digital divide</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1603575448360-153f093fd0b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Electronics recycling">
+          <div class="gallery-caption">Sustainable technology practices</div>
+        </div>
+      </div>
+      
+      <p>Founded in 2024 by a group of passionate high school students, Second Step Tech began as a small initiative to help local students access laptops for remote learning during the pandemic. What started as a neighborhood project quickly grew into a community-wide movement as we witnessed the overwhelming need for technology access across all demographics.</p>
+      
+      <p>Today, we've expanded our reach to serve schools, community centers, senior facilities, and individual families throughout the region. Our team of dedicated volunteers works tirelessly to collect, refurbish, and redistribute technology to those who need it most, while also providing technical support and digital literacy resources.</p>
+      
+      <h2 class="slide-in-right">What We Do</h2>
       <ul class="what-we-do-list">
-        <li><strong>Device Collection:</strong> We gather donated computers, laptops, phones, and tablets from individuals, schools, and businesses.</li>
-        <li><strong>Refurbishment & Repair:</strong> Our skilled volunteers and technicians wipe the data, repair hardware issues, and install or update operating systems to ensure each device is ready for new use.</li>
-        <li><strong>Testing & Quality Assurance:</strong> Every device goes through a thorough inspection and testing process to confirm its functionality and reliability.</li>
-        <li><strong>Distribution:</strong> We partner with community organizations, schools, and nonprofits to place these refurbished devices in the hands of those who will benefit the most.</li>
-        <li><strong>Ongoing Support:</strong> We offer additional resources so recipients can maintain and get the most out of their newly refurbished devices.</li>
+        <li><strong>Device Collection:</strong> We gather donated computers, laptops, phones, and tablets from individuals, schools, and businesses. Our collection drives make it easy for donors to responsibly dispose of their unwanted technology while making a positive impact.</li>
+        <li><strong>Refurbishment & Repair:</strong> Our skilled volunteers and technicians wipe the data, repair hardware issues, and install or update operating systems to ensure each device is ready for new use. We specialize in extending the useful life of technology that would otherwise end up in landfills.</li>
+        <li><strong>Testing & Quality Assurance:</strong> Every device goes through a thorough inspection and testing process to confirm its functionality and reliability. We ensure each recipient receives technology that meets their needs and works properly.</li>
+        <li><strong>Distribution:</strong> We partner with community organizations, schools, and nonprofits to place these refurbished devices in the hands of those who will benefit the most. Our targeted distribution ensures technology reaches those with limited access and greatest need.</li>
+        <li><strong>Digital Literacy Training:</strong> We provide basic training and resources to help recipients make the most of their new devices, covering essential skills from setup and maintenance to online safety and productivity applications.</li>
+        <li><strong>Ongoing Support:</strong> We offer additional resources so recipients can maintain and get the most out of their newly refurbished devices. Our support team is available to troubleshoot issues and answer questions as they arise.</li>
       </ul>
       
-      <h2>How It Works</h2>
-      <ul class="how-it-works-list">
-        <li><strong>Donation:</strong> Donors can drop off or ship their devices to our centers. We accept gently used or older electronics that still have functional potential.</li>
-        <li><strong>Data Wiping & Sanitization:</strong> We use industry-approved tools to securely erase all personal data, protecting donor privacy.</li>
-        <li><strong>Refurbishment:</strong> We repair hardware, replace broken parts, and update operating systems so devices run smoothly.</li>
-        <li><strong>Quality Check:</strong> Each device is thoroughly tested to ensure it's ready for a new owner.</li>
-        <li><strong>Distribution:</strong> We partner with local nonprofits, schools, and community centers to identify those most in need—whether it's students requiring laptops for homework or seniors learning basic computer skills.</li>
-        <li><strong>Follow-Up Support:</strong> We provide user guides or mentorship connections so recipients can continue to learn and thrive using their refurbished devices.</li>
-      </ul>
+      <h2 class="slide-in-left">How It Works</h2>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <div class="step-title">Donate</div>
+          <p>Contribute your unused devices through our donation drives or drop-off locations.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-title">Refurbish</div>
+          <p>Our tech team repairs, upgrades, and prepares each device for its new user.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-title">Distribute</div>
+          <p>Devices are matched with recipients based on needs and specifications.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <div class="step-title">Support</div>
+          <p>We provide training and ongoing assistance to ensure successful use.</p>
+        </div>
+      </div>
+
+      <h2 class="slide-in-right" id="donate-section">Donate Technology</h2>
+      <p>Your unused devices can make a significant difference in someone's life. We accept donations of laptops, desktops, tablets, smartphones, and related accessories. All donated items are either refurbished for distribution, or if beyond repair, responsibly recycled.</p>
       
-      <div id="donate-section">
-        <h2>Donate</h2>
-        <p>Your donations make our work possible. Whether you're donating a device or contributing financially, you're helping bridge the digital divide.</p>
-        
-        <div class="donation-options">
-          <div class="donation-card">
-            <h3>Donate Devices</h3>
-            <p>We accept laptops, desktops, smartphones, and tablets. If you have a large donation or need assistance with drop-off, please reach out so we can coordinate pickup. Together, we’ll give your devices a second life!</p>
-            <a href="#" class="btn">Find Drop-off Locations</a>
+      <p>By donating your technology, you're not just helping bridge the digital divide—you're also making an environmentally responsible choice by keeping electronic waste out of landfills. Each device donated represents another opportunity for education, connection, and growth.</p>
+      
+      <div class="donation-options">
+        <div class="donation-card zoom-in">
+          <h3>What We Accept</h3>
+          <ul>
+            <li>Laptops (less than 10 years old)</li>
+            <li>Desktop computers (less than 10 years old)</li>
+            <li>Tablets and iPads</li>
+            <li>Smartphones (functioning)</li>
+            <li>Monitors (flat screen only)</li>
+            <li>Keyboards, mice, and cables</li>
+            <li>Printers (working condition)</li>
+            <li>Networking equipment</li>
+          </ul>
+          <p>All devices should be in working or repairable condition. We ensure complete data wiping for your security.</p>
+        </div>
+        <div class="donation-card zoom-in">
+          <h3>How to Donate</h3>
+          <p>We make donating your technology simple and convenient:</p>
+          <ul>
+            <li><strong>Drop-off Locations:</strong> Bring your devices to one of our partner locations during business hours.</li>
+            <li><strong>Collection Events:</strong> Check our calendar for upcoming technology collection drives in your area.</li>
+            <li><strong>Corporate Donations:</strong> We offer pickup services for bulk donations from businesses and organizations.</li>
+          </ul>
+          <p>All donations are tax-deductible, and we provide receipts for all contributions.</p>
+          <a href="#" class="btn">Schedule a Donation</a>
+        </div>
+      </div>
+      
+      <h2 class="slide-in-left">Volunteer With Us</h2>
+      <p>Our work wouldn't be possible without our dedicated team of volunteers. Whether you're tech-savvy or just passionate about making a difference, there's a place for you in our organization. Volunteers gain valuable skills, connect with like-minded individuals, and make a tangible impact in the community.</p>
+      
+      <p>We welcome volunteers with diverse backgrounds and skill sets. Technical experience is helpful but not required for many roles—we provide training and support to help you contribute effectively. Our flexible scheduling options make it easy to fit volunteering into your busy life.</p>
+      
+      <div class="donation-options">
+        <div class="donation-card fade-in">
+          <h3>Technical Volunteers</h3>
+          <ul>
+            <li>Hardware repair and troubleshooting</li>
+            <li>Software installation and configuration</li>
+            <li>Data wiping and security</li>
+            <li>Quality assurance testing</li>
+            <li>Technical support for recipients</li>
+          </ul>
+        </div>
+        <div class="donation-card fade-in">
+          <h3>Non-Technical Volunteers</h3>
+          <ul>
+            <li>Donation collection and inventory</li>
+            <li>Community outreach and education</li>
+            <li>Event planning and coordination</li>
+            <li>Administrative support</li>
+            <li>Marketing and social media</li>
+          </ul>
+        </div>
+      </div>
+      
+      <a href="#" class="btn slide-in-right">Become a Volunteer</a>
+      
+      <h2 class="slide-in-right">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">How do you ensure my data is removed from donated devices?</div>
+          <div class="faq-answer">
+            <p>We take data security very seriously. All donated devices undergo a thorough data sanitization process using industry-standard software that meets Department of Defense requirements for data destruction. For devices with hard drives, we use multi-pass wiping techniques to ensure all personal information is completely removed. For devices that cannot be securely wiped, we physically remove and destroy the storage components before recycling the remaining hardware.</p>
           </div>
-          
-          <div class="donation-card">
-            <h3>Donate Funds</h3>
-            <p>Your financial support helps us purchase replacement parts, cleaning supplies, and cover operational costs like shipping, ensuring every device we refurbish reaches the people who need it most. Every dollar makes a difference!</p>
-            <a href="#" class="btn">Donate via PayPal</a>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">Are donations tax-deductible?</div>
+          <div class="faq-answer">
+            <p>Yes, all donations to Second Step Tech are tax-deductible. We are a registered 501(c)(3) nonprofit organization, and we provide receipts for all contributions, including both device donations and monetary support. The receipt will include our tax ID number and a description of your donation for your tax records.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">What happens to devices that can't be refurbished?</div>
+          <div class="faq-answer">
+            <p>Devices that cannot be refurbished are responsibly recycled through our certified e-waste recycling partners. We ensure that no donated technology ends up in landfills and that all components are processed according to environmental best practices. In some cases, we may salvage working parts from otherwise non-functional devices to use in repairs of other equipment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">How do you decide who receives the refurbished devices?</div>
+          <div class="faq-answer">
+            <p>We work with schools, community organizations, and social service agencies to identify individuals and groups with the greatest need for technology access. Recipients are selected based on a combination of factors including financial need, educational requirements, and potential impact. We also maintain an application process for individuals to request technology assistance directly.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">What kind of training do you provide with the devices?</div>
+          <div class="faq-answer">
+            <p>Each recipient receives basic training on device setup, operation, and maintenance. Depending on the recipient's needs and prior experience, we may also provide instruction on internet basics, online safety, productivity software, and other relevant digital skills. Our goal is to ensure that everyone who receives a device has the knowledge and confidence to use it effectively.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">Can businesses donate in bulk?</div>
+          <div class="faq-answer">
+            <p>Absolutely! We welcome corporate donations and can facilitate bulk pickups for businesses upgrading their technology. Corporate donations make a significant impact on our ability to serve the community, and we can work with your IT department to ensure a smooth transition. We also offer special recognition for our corporate partners and can provide detailed documentation for your sustainability reporting.</p>
           </div>
         </div>
       </div>
@@ -377,80 +983,178 @@
     
     <!-- Team Tab -->
     <section id="team" class="tab-content">
-      <h1>Our Team</h1>
-      <p>Our dedicated team consists of passionate high school students who believe in the transformative power of technology. Each member brings unique strengths—from finance and engineering to outreach and logistics—all united by our mission to increase technology access in underserved communities.</p>
+      <h1 class="zoom-in">Meet Our Team</h1>
+      <p class="fade-in">Our dedicated team brings together diverse skills and a shared passion for technology accessibility. From tech experts to community organizers, each member plays a vital role in our mission to bridge the digital divide.</p>
       
       <div class="team-grid">
-        <div class="team-member">
+        <div class="team-member slide-in-left">
           <div class="team-img">
-            <img src="images/anshsstpic.avif" alt="anshpicture">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
           </div>
           <div class="team-info">
-            <h3>Ansh Shah</h3>
-            <p>Executive Director</p>
-            <p>Hey guys! My name is Ansh Shah, and I’m currently a junior at Plano East Senior High School. Throughout my life, I have always been passionate about giving back to the community, and I believe this organization provides a powerful solution to the modern challenge of equal access to technology. Fulfilling the mission of this organization is my #1 priority because I believe it has the potential to enhance education in underdeveloped regions in ways unimaginable. I’m excited to be a part of this journey and can’t wait to see the positive impact we can create together!</p>
+            <h3>Naomi Reynolds</h3>
+            <div class="role">Founder</div>
+            <p>With a background in computer science and community organizing, Naomi leads our organization with vision and determination. Her experience in both the tech industry and nonprofit sector provides valuable insights into bridging the digital divide effectively.</p>
+            <p>After witnessing firsthand how technology access changed educational outcomes in her community, Naomi became passionate about expanding digital equity for all. She brings strategic leadership and unwavering commitment to our mission.</p>
           </div>
         </div>
-        
-        <div class="team-member">
+        <div class="team-member slide-in-right">
           <div class="team-img">
-            <img src="images/vehbisstpic.png" alt="vehbipicture">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
           </div>
           <div class="team-info">
-            <h3>Vehbi Akin</h3>
-            <p>Director of Finance and Operations</p>
-            <p>Hey everyone! I’m Vehbi Akin, a junior at Plano East. I’ve always been passionate about using technology to make a difference, and Second Step Tech is the perfect platform to bring that vision to life. I’m excited to collaborate, innovate, and help bridge the gap in tech accessibility for students everywhere!</p>
+            <h3>David Chen</h3>
+            <div class="role">Finance and Technology</div>
+            <p>David oversees our technology operations, ensuring each device meets our quality standards before distribution. His expertise in hardware repair and software optimization has been instrumental in maximizing the number of devices we can successfully refurbish.</p>
+            <p>With over a decade of experience in IT systems management, David leads our technical volunteers with patience and knowledge. His innovative approach to device refurbishment has helped us extend the useful life of hundreds of computers.</p>
           </div>
         </div>
-        
-        <div class="team-member">
+        <div class="team-member slide-in-left">
           <div class="team-img">
-            <img src="images/ayanmishrasst.png" alt="ayanpicture">
+            <img src="https://images.unsplash.com/photo-1573497019236-61e7a3e07f36?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
           </div>
           <div class="team-info">
-            <h3>Ayan Mishra</h3>
-            <p>Director Of Logistics and Technology</p>
-            <p>Hi! My name is Ayan Mishra, and I’m thrilled to be a part of Second Step Tech. As a junior at Plano East, I’ve seen firsthand how technology can transform education, and I’m committed to making those opportunities available to everyone. Let’s work together to create meaningful change!</p>
+            <h3>Maya Johnson</h3>
+            <div class="role">Community Partnerships</div>
+            <p>Maya builds relationships with schools, community centers, and other organizations to identify technology needs and coordinate distribution. Her background in education gives her unique insight into how digital access impacts learning opportunities.</p>
+            <p>As a former teacher in underserved communities, Maya witnessed the educational disparities caused by the digital divide. Her passion for educational equity drives our community outreach efforts and helps ensure technology reaches those who need it most.</p>
+          </div>
+        </div>
+        <div class="team-member slide-in-right">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
+          </div>
+          <div class="team-info">
+            <h3>Kareem Adams</h3>
+            <div class="role">Director of Operations</div>
+            <p>Kareem manages our day-to-day operations, including volunteer coordination, donation processing, and logistics. His organizational skills ensure that our workflow remains efficient and effective at every stage.</p>
+            <p>With a background in nonprofit management and supply chain optimization, Kareem has transformed our operational processes to handle increasing donation volumes while maintaining quality. His leadership ensures our limited resources create maximum community impact.</p>
+          </div>
+        </div>
+        <div class="team-member slide-in-left">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
+          </div>
+          <div class="team-info">
+            <h3>Jessica Martinez</h3>
+            <div class="role">Volunteer Coordinator</div>
+            <p>Jessica recruits, trains, and supports our amazing volunteer team. Her enthusiasm and people skills create a welcoming environment for volunteers of all backgrounds and technical abilities.</p>
+            <p>As someone who began as a volunteer herself, Jessica understands the volunteer experience from all angles. She's developed comprehensive training programs that enable volunteers to contribute meaningfully regardless of their starting skill level.</p>
+          </div>
+        </div>
+        <div class="team-member slide-in-right">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
+          </div>
+          <div class="team-info">
+            <h3>James Wilson</h3>
+            <div class="role">Technical Support Lead</div>
+            <p>James leads our technical support efforts, providing assistance to recipients and ensuring they can use their devices effectively. His patience and clear communication make technology accessible to users of all ages and experience levels.</p>
+            <p>With experience in IT education and help desk management, James has developed user-friendly guides and training materials that empower our recipients. His supportive approach helps build confidence in new technology users.</p>
           </div>
         </div>
       </div>
+      
+      <div class="volunteer-cta fade-in" style="text-align: center; margin-top: 60px;">
+        <h2>Join Our Team!</h2>
+        <p>Passionate about technology and making a difference? We're always looking for dedicated volunteers to help with device refurbishment, technical support, community outreach, and more.</p>
+        <a href="#" class="btn bounce">Volunteer With Us</a>
+      </div>
     </section>
     
-    <!-- Apply Tab -->
+    <!-- Application Tab -->
     <section id="apply" class="tab-content">
-      <h1>Apply to Be an Officer</h1>
-      <p>Officers at Second Step Tech commit a few hours each week to coordinate device donations, organize refurbishment sessions, plan outreach events, and handle fundraising. As an officer, you’ll gain leadership experience, learn valuable technical skills, and help expand our impact in bridging the digital divide.</p>
+      <h1 class="zoom-in">Apply for Technology</h1>
+      <p class="fade-in">We're committed to providing technology to those who need it most. If you or someone you know could benefit from access to a refurbished device, please complete our application form below.</p>
       
-      <div class="iframe-container">
-        <iframe 
-          src="https://docs.google.com/forms/d/e/1FAIpQLSdQCTkMZbB8P86COYzPLvR_hOurAmu3asyaGKMUDwE2WApyQA/viewform?embedded=true"
-          width="640"
-          height="1368"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-        >
-          Loading…
-        </iframe>
+      <div class="application-info slide-in-left">
+        <h2>Who Can Apply</h2>
+        <p>We prioritize providing technology to individuals and organizations that demonstrate both need and potential impact. Our recipients typically include:</p>
+        <ul>
+          <li>Students without access to necessary technology for schoolwork</li>
+          <li>Job seekers needing devices for applications and skill development</li>
+          <li>Seniors requiring technology for healthcare management and family connection</li>
+          <li>Nonprofit organizations serving vulnerable populations</li>
+          <li>Community centers and educational programs in underserved areas</li>
+          <li>Families with financial hardship and limited technology access</li>
+        </ul>
+        
+        <h2 class="slide-in-right" style="margin-top: 40px;">What to Expect</h2>
+        <p>Our application process is designed to be straightforward and respectful of your time and privacy:</p>
+        <ol>
+          <li><strong>Submit Application:</strong> Complete the form below with information about your technology needs and situation.</li>
+          <li><strong>Review Period:</strong> Our team reviews applications on a monthly basis. We'll contact you within 2-4 weeks regarding your application status.</li>
+          <li><strong>Assessment:</strong> If your application moves forward, we may schedule a brief conversation to better understand your specific technology needs.</li>
+          <li><strong>Device Matching:</strong> Once approved, we'll match you with an appropriate device based on your requirements and our available inventory.</li>
+          <li><strong>Distribution:</strong> You'll be invited to pick up your device at our center, where you'll receive basic training on its use and maintenance.</li>
+          <li><strong>Follow-up Support:</strong> Our team remains available to provide technical assistance as you begin using your new device.</li>
+        </ol>
+      </div>
+      
+      <div class="iframe-container fade-in">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwxCgZ3AqI4iYHnR0wYNO0aZlVmugzFpqnKS1w2tmV9GiYJw/viewform?embedded=true" width="640" height="1243" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      </div>
+      
+      <div class="additional-resources slide-in-left" style="margin-top: 60px;">
+        <h2>Additional Resources</h2>
+        <p>Even if you don't qualify for our device program, we're committed to helping you access technology. Here are some alternative resources that may be helpful:</p>
+        <ul>
+          <li><strong>Public Libraries:</strong> Most libraries offer free computer and internet access, as well as digital literacy classes.</li>
+          <li><strong>Community Centers:</strong> Many neighborhood centers provide technology access during regular hours.</li>
+          <li><strong>Low-Cost Internet Programs:</strong> Several providers offer reduced-rate internet service for qualifying households.</li>
+          <li><strong>Digital Literacy Workshops:</strong> We regularly host free workshops on basic computer skills and internet safety. Check our events calendar for upcoming sessions.</li>
+          <li><strong>Technology Assistance Hotline:</strong> Our volunteers staff a help line to answer basic technology questions and provide guidance, even if you're not a recipient of our devices.</li>
+        </ul>
+      </div>
+      
+      <div class="testimonials">
+        <h2 class="slide-in-right">From Our Recipients</h2>
+        <div class="testimonial-container fade-in">
+          <div class="testimonial-text">
+            I never thought I'd be able to afford a computer for my schoolwork. Now I can complete assignments at home instead of staying late at school or rushing to finish at the library before it closes. My grades have improved, and I'm finally able to take that online course I've been interested in!
+          </div>
+          <div class="testimonial-author">- Jamie, High School Student</div>
+        </div>
+        <div class="testimonial-container fade-in">
+          <div class="testimonial-text">
+            After losing my job, I couldn't afford to replace my broken laptop. Second Step Tech provided me with a refurbished computer that allowed me to search for jobs, update my resume, and take online courses to improve my skills. I'm happy to say I recently secured a new position, and it wouldn't have been possible without this program.
+          </div>
+          <div class="testimonial-author">- Carlos, Program Recipient</div>
+        </div>
+        <div class="testimonial-container fade-in">
+          <div class="testimonial-text">
+            Our community center serves over 200 senior citizens weekly, and the five refurbished computers we received from Second Step Tech have become our most popular resource. Seniors are now connecting with family through video calls, managing their healthcare online, and even exploring new hobbies. The impact has been truly transformative for our community.
+          </div>
+          <div class="testimonial-author">- Elena, Community Center Director</div>
+        </div>
       </div>
     </section>
   </main>
   
   <footer>
     <div class="container">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
       <p>&copy; 2025 Second Step Tech. All rights reserved.</p>
-      <p>A nonprofit organization dedicated to giving technology a second life and bridging the digital divide.</p>
+      <p>Giving Technology a Second Life</p>
     </div>
   </footer>
-
+  
+  <!-- Add Font Awesome for social icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
   <script>
-    // Toggle the nav menu on mobile
+    // Function to toggle mobile menu
     function toggleNav() {
       const navLinks = document.getElementById('navLinks');
       navLinks.classList.toggle('active');
     }
-
-    // Tab Functionality
+    
+    // Function to switch tabs
     function showTab(tabId) {
       // Hide all tabs
       const tabs = document.getElementsByClassName('tab-content');
@@ -461,9 +1165,103 @@
       // Show the selected tab
       document.getElementById(tabId).classList.add('active');
       
-      // Scroll to top
+      // If on mobile, close the menu when a tab is selected
+      if (window.innerWidth <= 768) {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.remove('active');
+      }
+      
+      // Scroll to top when changing tabs
       window.scrollTo(0, 0);
     }
+    
+    // Function to toggle FAQ items
+    function toggleFAQ(element) {
+      const item = element.parentElement;
+      item.classList.toggle('active');
+    }
+    
+    // Animation for statistics
+    // This makes the numbers count up when scrolled into view
+    window.addEventListener('scroll', function() {
+      const statsContainer = document.querySelector('.stats-container');
+      if (!statsContainer) return;
+      
+      const containerPosition = statsContainer.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.3;
+      
+      if (containerPosition < screenPosition) {
+        animateStats();
+      }
+    });
+    
+    let statsAnimated = false;
+    
+    function animateStats() {
+      if (statsAnimated) return;
+      statsAnimated = true;
+      
+      const stats = [
+        { id: 'devices-count', target: 500 },
+        { id: 'students-count', target: 300 },
+        { id: 'partners-count', target: 15 },
+        { id: 'volunteers-count', target: 50 }
+      ];
+      
+      stats.forEach(stat => {
+        animateValue(stat.id, 0, stat.target, 2000);
+      });
+    }
+    
+    function animateValue(id, start, end, duration) {
+      const element = document.getElementById(id);
+      if (!element) return;
+      
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        element.innerHTML = value + '+';
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+    
+    // Add animation classes to elements when they enter the viewport
+    window.addEventListener('scroll', function() {
+      const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in, .zoom-in');
+      
+      animatedElements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateX(0)';
+        }
+      });
+    });
+    
+    // Initialize animations on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.innerWidth > 768) {
+        // Check if elements are already in viewport on page load
+        const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in, .zoom-in');
+        
+        animatedElements.forEach(element => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight;
+          
+          if (elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateX(0)';
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
