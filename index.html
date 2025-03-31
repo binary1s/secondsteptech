@@ -104,7 +104,6 @@
       position: relative;
     }
 
-    /* Hamburger icon for mobile */
     .mobile-toggle {
       display: none;
       font-size: 24px;
@@ -112,7 +111,6 @@
       user-select: none;
     }
 
-    /* Nav Links */
     .nav-links {
       display: flex;
       list-style: none;
@@ -172,7 +170,6 @@
       }
     }
 
-    /* Mobile menu */
     @media (max-width: 768px) {
       .mobile-toggle {
         display: block;
@@ -196,7 +193,6 @@
       }
     }
 
-    /* Content Tabs */
     .tab-content {
       display: none;
       padding: 40px 0;
@@ -389,7 +385,7 @@
       transform: translateY(0);
     }
 
-    /* Spacing for Lists */
+    /* Lists */
     .what-we-do-list li,
     .how-it-works-list li {
       margin-bottom: 15px;
@@ -702,7 +698,6 @@
       transform: scaleX(1);
     }
 
-    /* Container for the Google Form iframe */
     .iframe-container {
       display: flex;
       justify-content: center;
@@ -715,7 +710,6 @@
     <div class="container">
       <nav>
         <div class="logo">Second Step Tech</div>
-        <!-- Hamburger icon (only visible on mobile) -->
         <div class="mobile-toggle" onclick="toggleNav()">&#9776;</div>
         <ul class="nav-links" id="navLinks">
           <li><a href="#" onclick="showTab('home'); toggleNav();">Home</a></li>
@@ -748,7 +742,6 @@
         <p>We're committed to addressing this inequality through sustainable, community-focused solutions. By giving technology a second life, we're not only helping people connect to essential resources but also reducing e-waste and promoting environmental sustainability.</p>
         
         <div class="image-gallery">
-          <!-- Keep only the first and third images -->
           <div class="gallery-item">
             <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Student with laptop">
             <div class="gallery-caption">Empowering students with technology</div>
@@ -812,7 +805,7 @@
       <p>Second Step Tech was founded with a simple idea: give used technology a second step in its lifecycle while helping bridge the digital divide. We collect donated devices, refurbish them, and distribute them to those in need.</p>
       
       <div class="image-gallery">
-        <!-- Removed the "Our team at work" image -->
+        <!-- "Our team at work" image removed -->
         <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital divide concept">
           <div class="gallery-caption">Bridging the digital divide</div>
@@ -974,7 +967,7 @@
         <!-- Ansh Shah -->
         <div class="team-member slide-in-left">
           <div class="team-img">
-            <img src="https://via.placeholder.com/350x250?text=Ansh+Shah" alt="Ansh Shah">
+            <img src="images/anshsstpic.avif" alt="Ansh Shah">
           </div>
           <div class="team-info">
             <h3>Ansh Shah</h3>
@@ -985,18 +978,18 @@
         <!-- Vehbi Akin -->
         <div class="team-member slide-in-right">
           <div class="team-img">
-            <img src="https://via.placeholder.com/350x250?text=Vehbi+Akin" alt="Vehbi Akin">
+            <img src="images/vehbisstpic.png" alt="Vehbi Akin">
           </div>
           <div class="team-info">
             <h3>Vehbi Akin</h3>
-            <div class="role">Director of Finance</div>
+            <div class="role">Director of Finance & Technology</div>
             <p>Hey everyone! I’m Vehbi Akin, a junior at Plano East. I’ve always been passionate about using technology to make a difference, and SecondStepTech is the perfect platform to bring that vision to life. I’m excited to collaborate, innovate, and help bridge the gap in tech accessibility for students everywhere!</p>
           </div>
         </div>
         <!-- Kareem Hassanien -->
         <div class="team-member slide-in-left">
           <div class="team-img">
-            <img src="https://via.placeholder.com/350x250?text=Kareem+Hassanien" alt="Kareem Hassanien">
+            <img src="images/kareemsstpic.png" alt="Kareem Hassanien">
           </div>
           <div class="team-info">
             <h3>Kareem Hassanien</h3>
@@ -1037,8 +1030,7 @@
       </div>
       
       <div class="iframe-container fade-in">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwxCgZ3AqI4iYHnR0wYNO0aZlVmugzFpqnKS1w2tmV9GiYJw/viewform?embedded=true" width="640" height="1243" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-      </div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdQCTkMZbB8P86COYzPLvR_hOurAmu3asyaGKMUDwE2WApyQA/viewform?embedded=true" width="640" height="1944" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>      </div>
       
       <div class="additional-resources slide-in-left" style="margin-top: 60px;">
         <h2>Additional Resources</h2>
@@ -1093,13 +1085,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   
   <script>
-    // Function to toggle mobile menu
     function toggleNav() {
       const navLinks = document.getElementById('navLinks');
       navLinks.classList.toggle('active');
     }
     
-    // Function to switch tabs
     function showTab(tabId) {
       const tabs = document.getElementsByClassName('tab-content');
       for (let i = 0; i < tabs.length; i++) {
@@ -1113,13 +1103,11 @@
       window.scrollTo(0, 0);
     }
     
-    // Function to toggle FAQ items
     function toggleFAQ(element) {
       const item = element.parentElement;
       item.classList.toggle('active');
     }
     
-    // Animation for statistics
     window.addEventListener('scroll', function() {
       const statsContainer = document.querySelector('.stats-container');
       if (!statsContainer) return;
