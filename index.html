@@ -101,30 +101,28 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
-      position: relative; /* So the absolute-positioned nav-links can anchor to nav */
+      position: relative;
     }
 
     /* Hamburger icon for mobile */
     .mobile-toggle {
-      display: none; /* Hidden on desktop */
+      display: none;
       font-size: 24px;
       cursor: pointer;
-      user-select: none; /* Prevents text selection on double-tap */
+      user-select: none;
     }
 
-    /* Remove default list styling and margin */
+    /* Nav Links */
     .nav-links {
       display: flex;
       list-style: none;
-      transition: transform 0.3s, opacity 0.3s; /* Smooth transitions for mobile menu */
+      transition: transform 0.3s, opacity 0.3s;
     }
 
-    /* Remove margin on li to avoid misalignment with new button style */
     .nav-links li {
       margin: 0;
     }
 
-    /* Make each nav link a rounded, purplish button */
     .nav-links a {
       display: inline-block;
       background: linear-gradient(45deg, #833ab4, #fd1d1d);
@@ -174,13 +172,11 @@
       }
     }
 
-    /* Mobile menu (when <= 768px) */
+    /* Mobile menu */
     @media (max-width: 768px) {
       .mobile-toggle {
-        display: block; /* Show the hamburger icon on mobile */
+        display: block;
       }
-
-      /* Default (hidden) state for nav-links on mobile: off-canvas, invisible */
       .nav-links {
         position: absolute;
         top: 70px; 
@@ -193,8 +189,6 @@
         opacity: 0;
         visibility: hidden;
       }
-
-      /* Visible state when .active is added */
       .nav-links.active {
         transform: translateY(0);
         opacity: 1;
@@ -270,7 +264,7 @@
       margin-bottom: 40px;
     }
 
-    /* Buttons (site-wide) */
+    /* Buttons */
     .btn {
       display: inline-block;
       padding: 12px 30px;
@@ -395,10 +389,10 @@
       transform: translateY(0);
     }
 
-    /* Spacing for bullet points in "What We Do" and "How It Works" */
+    /* Spacing for Lists */
     .what-we-do-list li,
     .how-it-works-list li {
-      margin-bottom: 15px; /* Add spacing between list items */
+      margin-bottom: 15px;
       position: relative;
       padding-left: 25px;
     }
@@ -419,7 +413,6 @@
       margin-top: 40px;
     }
     
-    /* Force single column on smaller screens to avoid overflow */
     @media (max-width: 768px) {
       .team-grid {
         grid-template-columns: 1fr;
@@ -712,10 +705,9 @@
     /* Container for the Google Form iframe */
     .iframe-container {
       display: flex;
-      justify-content: center; /* Centers the iframe horizontally */
+      justify-content: center;
       margin-top: 20px;
     }
-
   </style>
 </head>
 <body>
@@ -723,10 +715,8 @@
     <div class="container">
       <nav>
         <div class="logo">Second Step Tech</div>
-        
         <!-- Hamburger icon (only visible on mobile) -->
         <div class="mobile-toggle" onclick="toggleNav()">&#9776;</div>
-        
         <ul class="nav-links" id="navLinks">
           <li><a href="#" onclick="showTab('home'); toggleNav();">Home</a></li>
           <li><a href="#" onclick="showTab('about'); toggleNav();">About Us</a></li>
@@ -758,13 +748,10 @@
         <p>We're committed to addressing this inequality through sustainable, community-focused solutions. By giving technology a second life, we're not only helping people connect to essential resources but also reducing e-waste and promoting environmental sustainability.</p>
         
         <div class="image-gallery">
+          <!-- Keep only the first and third images -->
           <div class="gallery-item">
             <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Student with laptop">
             <div class="gallery-caption">Empowering students with technology</div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1581092921461-39b10bc4bf93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech repair">
-            <div class="gallery-caption">Our refurbishment process</div>
           </div>
           <div class="gallery-item">
             <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Community center">
@@ -819,16 +806,13 @@
       </div>
     </section>
     
-    <!-- About Tab -->
+    <!-- About Us Tab -->
     <section id="about" class="tab-content">
       <h1 class="zoom-in">About Second Step Tech</h1>
       <p>Second Step Tech was founded with a simple idea: give used technology a second step in its lifecycle while helping bridge the digital divide. We collect donated devices, refurbish them, and distribute them to those in need.</p>
       
       <div class="image-gallery">
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1540066019607-e5f69323a8dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team working on laptops">
-          <div class="gallery-caption">Our team at work</div>
-        </div>
+        <!-- Removed the "Our team at work" image -->
         <div class="gallery-item">
           <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital divide concept">
           <div class="gallery-caption">Bridging the digital divide</div>
@@ -984,81 +968,42 @@
     <!-- Team Tab -->
     <section id="team" class="tab-content">
       <h1 class="zoom-in">Meet Our Team</h1>
-      <p class="fade-in">Our dedicated team brings together diverse skills and a shared passion for technology accessibility. From tech experts to community organizers, each member plays a vital role in our mission to bridge the digital divide.</p>
+      <p class="fade-in">Our dedicated team brings together diverse skills and a shared passion for technology accessibility.</p>
       
       <div class="team-grid">
+        <!-- Ansh Shah -->
         <div class="team-member slide-in-left">
           <div class="team-img">
-            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
+            <img src="https://via.placeholder.com/350x250?text=Ansh+Shah" alt="Ansh Shah">
           </div>
           <div class="team-info">
-            <h3>Naomi Reynolds</h3>
-            <div class="role">Founder</div>
-            <p>With a background in computer science and community organizing, Naomi leads our organization with vision and determination. Her experience in both the tech industry and nonprofit sector provides valuable insights into bridging the digital divide effectively.</p>
-            <p>After witnessing firsthand how technology access changed educational outcomes in her community, Naomi became passionate about expanding digital equity for all. She brings strategic leadership and unwavering commitment to our mission.</p>
+            <h3>Ansh Shah</h3>
+            <div class="role">Chief Executive Director</div>
+            <p>Hey guys! My name is Ansh Shah, and I’m currently a junior at Plano East Senior High School. Throughout my life, I have always been passionate about giving back to the community, and I believe this organization provides a powerful solution to the modern challenge of equal access to technology. Fulfilling the mission of this organization is my #1 priority because I believe it has the potential to enhance education in underdeveloped regions in ways unimaginable. I’m excited to be a part of this journey and can’t wait to see the positive impact we can create together!</p>
           </div>
         </div>
+        <!-- Vehbi Akin -->
         <div class="team-member slide-in-right">
           <div class="team-img">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
+            <img src="https://via.placeholder.com/350x250?text=Vehbi+Akin" alt="Vehbi Akin">
           </div>
           <div class="team-info">
-            <h3>David Chen</h3>
-            <div class="role">Finance and Technology</div>
-            <p>David oversees our technology operations, ensuring each device meets our quality standards before distribution. His expertise in hardware repair and software optimization has been instrumental in maximizing the number of devices we can successfully refurbish.</p>
-            <p>With over a decade of experience in IT systems management, David leads our technical volunteers with patience and knowledge. His innovative approach to device refurbishment has helped us extend the useful life of hundreds of computers.</p>
+            <h3>Vehbi Akin</h3>
+            <div class="role">Director of Finance</div>
+            <p>Hey everyone! I’m Vehbi Akin, a junior at Plano East. I’ve always been passionate about using technology to make a difference, and SecondStepTech is the perfect platform to bring that vision to life. I’m excited to collaborate, innovate, and help bridge the gap in tech accessibility for students everywhere!</p>
           </div>
         </div>
+        <!-- Kareem Hassanien -->
         <div class="team-member slide-in-left">
           <div class="team-img">
-            <img src="https://images.unsplash.com/photo-1573497019236-61e7a3e07f36?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
+            <img src="https://via.placeholder.com/350x250?text=Kareem+Hassanien" alt="Kareem Hassanien">
           </div>
           <div class="team-info">
-            <h3>Maya Johnson</h3>
-            <div class="role">Community Partnerships</div>
-            <p>Maya builds relationships with schools, community centers, and other organizations to identify technology needs and coordinate distribution. Her background in education gives her unique insight into how digital access impacts learning opportunities.</p>
-            <p>As a former teacher in underserved communities, Maya witnessed the educational disparities caused by the digital divide. Her passion for educational equity drives our community outreach efforts and helps ensure technology reaches those who need it most.</p>
-          </div>
-        </div>
-        <div class="team-member slide-in-right">
-          <div class="team-img">
-            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
-          </div>
-          <div class="team-info">
-            <h3>Kareem Adams</h3>
+            <h3>Kareem Hassanien</h3>
             <div class="role">Director of Operations</div>
-            <p>Kareem manages our day-to-day operations, including volunteer coordination, donation processing, and logistics. His organizational skills ensure that our workflow remains efficient and effective at every stage.</p>
-            <p>With a background in nonprofit management and supply chain optimization, Kareem has transformed our operational processes to handle increasing donation volumes while maintaining quality. His leadership ensures our limited resources create maximum community impact.</p>
+            <p>Hey guys! I’m Kareem, a junior at Plano East, and I’m excited to contribute to SecondStepTech’s mission. Technology has the power to open doors, and I’m passionate about ensuring that every student—no matter where they come from—has the tools to succeed. Can’t wait to see the impact we’ll make!</p>
           </div>
         </div>
-        <div class="team-member slide-in-left">
-          <div class="team-img">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
-          </div>
-          <div class="team-info">
-            <h3>Jessica Martinez</h3>
-            <div class="role">Volunteer Coordinator</div>
-            <p>Jessica recruits, trains, and supports our amazing volunteer team. Her enthusiasm and people skills create a welcoming environment for volunteers of all backgrounds and technical abilities.</p>
-            <p>As someone who began as a volunteer herself, Jessica understands the volunteer experience from all angles. She's developed comprehensive training programs that enable volunteers to contribute meaningfully regardless of their starting skill level.</p>
-          </div>
-        </div>
-        <div class="team-member slide-in-right">
-          <div class="team-img">
-            <img src="https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Team Member">
-          </div>
-          <div class="team-info">
-            <h3>James Wilson</h3>
-            <div class="role">Technical Support Lead</div>
-            <p>James leads our technical support efforts, providing assistance to recipients and ensuring they can use their devices effectively. His patience and clear communication make technology accessible to users of all ages and experience levels.</p>
-            <p>With experience in IT education and help desk management, James has developed user-friendly guides and training materials that empower our recipients. His supportive approach helps build confidence in new technology users.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="volunteer-cta fade-in" style="text-align: center; margin-top: 60px;">
-        <h2>Join Our Team!</h2>
-        <p>Passionate about technology and making a difference? We're always looking for dedicated volunteers to help with device refurbishment, technical support, community outreach, and more.</p>
-        <a href="#" class="btn bounce">Volunteer With Us</a>
       </div>
     </section>
     
@@ -1156,22 +1101,15 @@
     
     // Function to switch tabs
     function showTab(tabId) {
-      // Hide all tabs
       const tabs = document.getElementsByClassName('tab-content');
       for (let i = 0; i < tabs.length; i++) {
         tabs[i].classList.remove('active');
       }
-      
-      // Show the selected tab
       document.getElementById(tabId).classList.add('active');
-      
-      // If on mobile, close the menu when a tab is selected
       if (window.innerWidth <= 768) {
         const navLinks = document.getElementById('navLinks');
         navLinks.classList.remove('active');
       }
-      
-      // Scroll to top when changing tabs
       window.scrollTo(0, 0);
     }
     
@@ -1182,14 +1120,11 @@
     }
     
     // Animation for statistics
-    // This makes the numbers count up when scrolled into view
     window.addEventListener('scroll', function() {
       const statsContainer = document.querySelector('.stats-container');
       if (!statsContainer) return;
-      
       const containerPosition = statsContainer.getBoundingClientRect().top;
       const screenPosition = window.innerHeight / 1.3;
-      
       if (containerPosition < screenPosition) {
         animateStats();
       }
@@ -1200,14 +1135,12 @@
     function animateStats() {
       if (statsAnimated) return;
       statsAnimated = true;
-      
       const stats = [
         { id: 'devices-count', target: 500 },
         { id: 'students-count', target: 300 },
         { id: 'partners-count', target: 15 },
         { id: 'volunteers-count', target: 50 }
       ];
-      
       stats.forEach(stat => {
         animateValue(stat.id, 0, stat.target, 2000);
       });
@@ -1216,7 +1149,6 @@
     function animateValue(id, start, end, duration) {
       const element = document.getElementById(id);
       if (!element) return;
-      
       let startTimestamp = null;
       const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -1230,14 +1162,11 @@
       window.requestAnimationFrame(step);
     }
     
-    // Add animation classes to elements when they enter the viewport
     window.addEventListener('scroll', function() {
       const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in, .zoom-in');
-      
       animatedElements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
         const screenPosition = window.innerHeight / 1.2;
-        
         if (elementPosition < screenPosition) {
           element.style.opacity = '1';
           element.style.transform = 'translateX(0)';
@@ -1245,16 +1174,12 @@
       });
     });
     
-    // Initialize animations on page load
     document.addEventListener('DOMContentLoaded', function() {
       if (window.innerWidth > 768) {
-        // Check if elements are already in viewport on page load
         const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in, .zoom-in');
-        
         animatedElements.forEach(element => {
           const elementPosition = element.getBoundingClientRect().top;
           const screenPosition = window.innerHeight;
-          
           if (elementPosition < screenPosition) {
             element.style.opacity = '1';
             element.style.transform = 'translateX(0)';
